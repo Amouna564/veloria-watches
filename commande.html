@@ -1,0 +1,375 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Veloria Watches - Commander</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- EN-TÊTE -->
+
+    <header>
+
+        <h1>VELORIA WATCHES</h1>
+
+        <nav>
+
+            <a href="index.html">Accueil</a>
+
+            <a href="produits.html">Nos montres</a>
+
+            <a href="commande.html">Commander</a>
+
+            <a href="contact.html">Contact</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- FORMULAIRE DE COMMANDE -->
+
+    <main>
+
+        <section class="commande">
+
+            <h2>Passer votre commande</h2>
+
+            <p>
+                Remplissez les informations ci-dessous
+                pour commander votre montre.
+            </p>
+
+
+            <form id="commandeForm">
+
+
+                <!-- NOM -->
+
+                <label for="nom">
+                    Nom complet :
+                </label>
+
+                <input
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Entrez votre nom"
+                    required>
+
+
+
+                <!-- VILLE -->
+
+                <label for="ville">
+                    Ville :
+                </label>
+
+                <input
+                    list="villes"
+                    id="ville"
+                    name="ville"
+                    placeholder="Commencez à écrire votre ville"
+                    required>
+
+                <datalist id="villes">
+
+                    <option value="Casablanca">
+                    <option value="Rabat">
+                    <option value="Salé">
+                    <option value="Marrakech">
+                    <option value="Fès">
+                    <option value="Tanger">
+                    <option value="Agadir">
+                    <option value="Meknès">
+                    <option value="Oujda">
+                    <option value="Kénitra">
+                    <option value="Tétouan">
+                    <option value="El Jadida">
+                    <option value="Safi">
+                    <option value="Mohammedia">
+                    <option value="Béni Mellal">
+                    <option value="Nador">
+                    <option value="Settat">
+                    <option value="Larache">
+                    <option value="Khouribga">
+                    <option value="Essaouira">
+                    <option value="Errachidia">
+                    <option value="Ouarzazate">
+                    <option value="Taza">
+                    <option value="Berkane">
+                    <option value="Ifrane">
+                    <option value="Dakhla">
+                    <option value="Laâyoune">
+
+                </datalist>
+
+
+
+                <!-- MONTRE -->
+
+                <label for="produit">
+                    Montre choisie :
+                </label>
+
+                <select
+                    id="produit"
+                    name="produit"
+                    required>
+
+                    <option value="">
+                        -- Choisissez une montre --
+                    </option>
+
+                    <option value="Veloria Classic - 149 DH">
+                        Veloria Classic — 149 DH
+                    </option>
+
+                    <option value="Veloria Sport - 169 DH">
+                        Veloria Sport — 169 DH
+                    </option>
+
+                    <option value="Veloria Steel - 199 DH">
+                        Veloria Steel — 199 DH
+                    </option>
+
+                    <option value="Veloria Chrono - 229 DH">
+                        Veloria Chrono — 229 DH
+                    </option>
+
+                    <option value="Veloria Premium - 249 DH">
+                        Veloria Premium — 249 DH
+                    </option>
+
+                </select>
+
+
+
+                <!-- DATE -->
+
+                <label for="date">
+                    Date souhaitée :
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    required>
+
+
+
+                <!-- OCCASION -->
+
+                <label for="occasion">
+                    Occasion :
+                </label>
+
+                <select
+                    id="occasion"
+                    name="occasion">
+
+                    <option value="">
+                        -- Choisissez une occasion --
+                    </option>
+
+                    <option value="Cadeau">
+                        🎁 Cadeau
+                    </option>
+
+                    <option value="Anniversaire">
+                        🎂 Anniversaire
+                    </option>
+
+                    <option value="Mariage">
+                        💍 Mariage
+                    </option>
+
+                    <option value="Diplôme">
+                        🎓 Diplôme
+                    </option>
+
+                    <option value="Travail">
+                        💼 Travail
+                    </option>
+
+                    <option value="Personnel">
+                        ❤️ Personnel
+                    </option>
+
+                    <option value="Autre">
+                        Autre
+                    </option>
+
+                </select>
+
+
+
+                <!-- BOUTON -->
+
+                <button type="submit">
+                    Commander via WhatsApp
+                </button>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- PIED DE PAGE -->
+
+    <footer>
+
+        <p>
+            © 2026 Veloria Watches
+        </p>
+
+        <p>
+            Montres élégantes au Maroc
+        </p>
+
+    </footer>
+
+
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        /*
+        --------------------------------------------------
+        RÉCUPÉRATION DE LA MONTRE CHOISIE
+        --------------------------------------------------
+        */
+
+        const params = new URLSearchParams(window.location.search);
+
+        const produitChoisi = params.get("produit");
+
+
+        /*
+        --------------------------------------------------
+        SÉLECTION AUTOMATIQUE
+        --------------------------------------------------
+        */
+
+        if (produitChoisi) {
+
+            const selectProduit =
+                document.getElementById("produit");
+
+            const options =
+                selectProduit.options;
+
+
+            for (let i = 0; i < options.length; i++) {
+
+                const nomOption =
+                    options[i].value.split(" - ")[0];
+
+
+                if (nomOption === produitChoisi) {
+
+                    selectProduit.selectedIndex = i;
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+
+        /*
+        --------------------------------------------------
+        ENVOI WHATSAPP
+        --------------------------------------------------
+        */
+
+        document
+            .getElementById("commandeForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                const nom =
+                    document.getElementById("nom").value;
+
+                const ville =
+                    document.getElementById("ville").value;
+
+                const montre =
+                    document.getElementById("produit").value;
+
+                const date =
+                    document.getElementById("date").value;
+
+                const occasion =
+                    document.getElementById("occasion").value;
+
+
+                const message =
+
+                    "Bonjour, je souhaite commander chez Veloria Watches."
+                    + "\n\n"
+                    + "Nom : " + nom
+                    + "\n"
+                    + "Ville : " + ville
+                    + "\n"
+                    + "Montre choisie : " + montre
+                    + "\n"
+                    + "Date souhaitée : " + date
+                    + "\n"
+                    + "Occasion : " + occasion;
+
+
+                /*
+                Numéro WhatsApp :
+                06 04 29 75 29
+                */
+
+                const numeroWhatsApp =
+                    "212604297529";
+
+
+                const lienWhatsApp =
+                    "https://wa.me/"
+                    + numeroWhatsApp
+                    + "?text="
+                    + encodeURIComponent(message);
+
+
+                window.open(
+                    lienWhatsApp,
+                    "_blank"
+                );
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
+```
